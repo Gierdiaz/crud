@@ -21,5 +21,27 @@ class UserController extends Controller
     {
         return view('crud-default.create');
     }
+
+    public function store(Request $request) 
+    {
+        $data = $request->all();
+
+        User::created($data);
+
+        //depois que salvar retorna para o tela principal
+        return redirect()->route('user.index');
+    }
+
+    public function show (string $id)
+    {
+        if(!$users = User::find($id)) {
+            
+            return back();
+        }
+
+        return view('crud-default.show', compact('users'));
+
+    }
+
 }
 

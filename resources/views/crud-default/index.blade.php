@@ -8,6 +8,10 @@
 
     <h1 id="h1">Dados do usuário</h1>
 
+    <div>
+        <a href="{{ route('user.create') }}">Inserir dados do usuário</a>
+    </div>
+
 
     <table>
         <thead>
@@ -20,11 +24,12 @@
             @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->name }}</td>
-                    <td>{{ getPositionUser( $user->position) }}</td>
+                    <td>{{ getPositionUser($user->position) }}</td>
                     <td>{{ $user->address }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-
+                        <a href="{{ route('user.show', $user->id) }}">Editar</a>
+                        <a href="">Deletar</a>
                     </td>
                 </tr>
             @endforeach
