@@ -32,7 +32,7 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function show (string $id)
+    public function show (string|int $id)
     {
         if(!$users = User::find($id)) {
             
@@ -41,6 +41,29 @@ class UserController extends Controller
 
         return view('crud-default.show', compact('users'));
 
+    }
+
+    public function update(string|int $id)
+    {
+        if(!$users = User::find($id)) {
+            return back();
+        }
+
+        $users->update();
+
+        return redirect()->route('user.index');
+    }
+
+    public function destroy(string|int $id) 
+    {
+        
+        if(!$users = User::find($id)) {
+            return back();
+        }
+
+        $users->delete();
+
+        return redirect()->route('user.index');
     }
 
 }
